@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -23,13 +23,13 @@ model Collection {
 }
 
 model Task {
-  id        Int       @id @default(autoincrement())
-  content   String
-  userId    String
-  done      Boolean   @default(false)
-  expiresAt DateTime?
-  createdAt DateTime  @default(now())
+  id            Int       @id @default(autoincrement())
+  content       String
+  userId        String
+  done          Boolean   @default(false)
+  expiresAt     DateTime?
+  createdAt     DateTime  @default(now())
 
-  collectionId Int
-  Collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  collection    Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  collectionId  Int
 }
