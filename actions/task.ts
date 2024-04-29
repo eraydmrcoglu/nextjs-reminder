@@ -16,13 +16,13 @@ export async function createTask(data: createTaskSchemaType){
     return await prisma.task.create({
         data: {
             userId: user.id,
-          content,
-          expiresAt,
-          Collection: {
-            connect: {
-                id: collectionId
+            content,
+            expiresAt,
+            collection: {
+                connect: {
+                    id: collectionId
+                }
             }
-          }
         }
     })
 }
